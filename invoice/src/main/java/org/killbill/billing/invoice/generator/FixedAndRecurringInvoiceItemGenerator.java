@@ -94,8 +94,6 @@ public class FixedAndRecurringInvoiceItemGenerator extends InvoiceItemGenerator 
                                                 final DryRunInfo dryRunInfo,
                                                 final Iterable<PluginProperty> pluginProperties, final InternalCallContext internalCallContext) throws InvoiceApiException {
         final MultiValueMap<UUID, LocalDate> createdItemsPerDayPerSubscription = new MultiValueHashMap<>();
-
-
         final InvoicePruner invoicePruner = new InvoicePruner(existingInvoices);
         final Set<UUID> toBeIgnored = invoicePruner.getFullyRepairedItemsClosure();
         final AccountItemTree accountItemTree = new AccountItemTree(account.getId(), invoiceId, config.getProrationFixedDays(internalCallContext));

@@ -18,8 +18,10 @@
 package org.killbill.billing.subscription.api.user;
 
 import org.joda.time.DateTime;
+import org.killbill.billing.catalog.api.DiscountStack;
 import org.killbill.billing.catalog.api.Plan;
 import org.killbill.billing.catalog.api.PlanPhase;
+import org.killbill.billing.invoice.api.Discount;
 import org.killbill.billing.subscription.api.SubscriptionBaseTransitionType;
 
 public interface SubscriptionBillingEvent extends Comparable<SubscriptionBillingEvent> {
@@ -27,6 +29,9 @@ public interface SubscriptionBillingEvent extends Comparable<SubscriptionBilling
     Plan getPlan();
 
     PlanPhase getPlanPhase();
+
+    DiscountStack[] getDiscounts();
+    Discount[] getDiscount();
 
     DateTime getEffectiveDate();
 

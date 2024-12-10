@@ -121,7 +121,7 @@ public abstract class JunctionTestSuiteNoDB extends GuicyKillbillTestSuiteNoDB {
 
         final Plan shotgun = new MockPlan();
         final PlanPhase shotgunMonthly = createMockMonthlyPlanPhase(null, BigDecimal.ZERO, PhaseType.TRIAL);
-
+        // Custom_mod
         final SubscriptionBillingEvent subscriptionBillingEvent = new DefaultSubscriptionBillingEvent(type,
                                                                                                       shotgun,
                                                                                                       shotgunMonthly,
@@ -129,7 +129,7 @@ public abstract class JunctionTestSuiteNoDB extends GuicyKillbillTestSuiteNoDB {
                                                                                                       totalOrdering,
                                                                                                       billCycleDay,
                                                                                                       1,
-                                                                                                      effectiveDate);
+                                                                                                      effectiveDate, null,null);
         return new DefaultBillingEvent(subscriptionBillingEvent,
                                        sub,
                                        billCycleDay,

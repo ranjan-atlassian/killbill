@@ -21,8 +21,10 @@ import java.util.Date;
 import java.util.Objects;
 
 import org.joda.time.DateTime;
+import org.killbill.billing.catalog.api.DiscountStack;
 import org.killbill.billing.catalog.api.Plan;
 import org.killbill.billing.catalog.api.PlanPhase;
+import org.killbill.billing.invoice.api.Discount;
 import org.killbill.billing.subscription.api.SubscriptionBaseTransitionType;
 
 public class DefaultSubscriptionBillingEvent implements SubscriptionBillingEvent {
@@ -37,10 +39,13 @@ public class DefaultSubscriptionBillingEvent implements SubscriptionBillingEvent
     private final Integer quantity;
     private final DateTime catalogEffectiveDate;
 
+    private  final DiscountStack[] discountStacks;
+    private  final Discount[] discounts;
+
     public DefaultSubscriptionBillingEvent(final SubscriptionBaseTransitionType type, final Plan plan,
                                            final PlanPhase planPhase, final DateTime effectiveDate,
                                            final Long totalOrdering, final Integer bcdLocal, final Integer quantity,
-                                           final DateTime catalogEffectiveDate) {
+                                           final DateTime catalogEffectiveDate, DiscountStack[] discountStacks , Discount[] discounts) {
         this.type = type;
         this.plan = plan;
         this.planPhase = planPhase;
@@ -49,6 +54,8 @@ public class DefaultSubscriptionBillingEvent implements SubscriptionBillingEvent
         this.bcdLocal = bcdLocal;
         this.quantity = quantity;
         this.catalogEffectiveDate = catalogEffectiveDate;
+        this.discountStacks = discountStacks;
+        this.discounts = discounts;
     }
 
     @Override
@@ -64,6 +71,16 @@ public class DefaultSubscriptionBillingEvent implements SubscriptionBillingEvent
     @Override
     public PlanPhase getPlanPhase() {
         return planPhase;
+    }
+
+    @Override
+    public DiscountStack[] getDiscounts() {
+        return new DiscountStack[0];
+    }
+
+    @Override
+    public Discount[] getDiscount() {
+        return new Discount[0];
     }
 
     @Override

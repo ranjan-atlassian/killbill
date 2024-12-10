@@ -879,7 +879,7 @@ public class TestBlockingCalculator extends JunctionTestSuiteNoDB {
             }
 
             final Currency currency = Currency.USD;
-
+            // DEFAULT_MOD
             final SubscriptionBillingEvent subscriptionBillingEvent = new DefaultSubscriptionBillingEvent(type,
                                                                                                           plan,
                                                                                                           planPhase,
@@ -887,7 +887,9 @@ public class TestBlockingCalculator extends JunctionTestSuiteNoDB {
                                                                                                           totalOrdering,
                                                                                                           billCycleDay,
                                                                                                           1,
-                                                                                                          effectiveDate);
+                                                                                                          effectiveDate,
+                                                                                                          null,
+                                                                                                          null);
             return new DefaultBillingEvent(subscriptionBillingEvent,
                                            subscription,
                                            billCycleDay,

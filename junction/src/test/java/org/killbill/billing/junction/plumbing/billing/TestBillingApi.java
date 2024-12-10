@@ -301,8 +301,9 @@ public class TestBillingApi extends JunctionTestSuiteNoDB {
                 SubscriptionBaseTransitionType.CREATE, 1, null, 1L, 2L, null);
 
         effectiveSubscriptionTransitions.add(t);
+        //DEFAULT_MOD
         billingTransitions.add(new DefaultSubscriptionBillingEvent(SubscriptionBaseTransitionType.CREATE, nextPlan, nextPhase, now, 1L, null, 1,
-                                                                   CatalogDateHelper.toUTCDateTime(nextPlan.getCatalog().getEffectiveDate())));
+                                                                   CatalogDateHelper.toUTCDateTime(nextPlan.getCatalog().getEffectiveDate()), null, null));
 
         return now;
     }

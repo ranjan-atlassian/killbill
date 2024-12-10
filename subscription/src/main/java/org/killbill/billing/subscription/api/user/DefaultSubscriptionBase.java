@@ -676,9 +676,10 @@ public class DefaultSubscriptionBase extends EntityBase implements SubscriptionB
 
                     // Computed from lastActiveCatalog
                     final DateTime catalogEffectiveDate = CatalogDateHelper.toUTCDateTime(lastActiveCatalog.getEffectiveDate());
+                    // CUSTOM_MOD
                     final SubscriptionBillingEvent billingTransition = new DefaultSubscriptionBillingEvent(cur.getTransitionType(), plan, planPhase, cur.getEffectiveTransitionTime(),
                                                                                                            cur.getTotalOrdering(), cur.getNextBillingCycleDayLocal(), cur.getNextQuantity(),
-                                                                                                           catalogEffectiveDate);
+                                                                                                           catalogEffectiveDate, null, null);
                     result.add(billingTransition);
 
                     if (isCreateOrTransfer || isChangeEvent || isPhaseEvent) {
@@ -703,8 +704,9 @@ public class DefaultSubscriptionBase extends EntityBase implements SubscriptionB
                                 if (!nextEffectiveDate.isBefore(cur.getEffectiveTransitionTime())) {
                                     // Computed from the nextPlan
                                     final DateTime catalogEffectiveDateForNextPlan = CatalogDateHelper.toUTCDateTime(nextPlan.getCatalog().getEffectiveDate());
+                                    //CUSTOM_MOD
                                     final SubscriptionBillingEvent newBillingTransition = new DefaultSubscriptionBillingEvent(SubscriptionBaseTransitionType.CHANGE, nextPlan, nextPlanPhase, nextEffectiveDate,
-                                                                                                                              cur.getTotalOrdering(), bcdLocal, cur.getNextQuantity(), catalogEffectiveDateForNextPlan);
+                                                                                                                              cur.getTotalOrdering(), bcdLocal, cur.getNextQuantity(), catalogEffectiveDateForNextPlan, null, null);
 
                                     candidatesCatalogChangeEvents.add(newBillingTransition);
                                 }
